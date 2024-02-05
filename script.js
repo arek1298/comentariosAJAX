@@ -1,17 +1,17 @@
 $(document).ready(function() {
-    // Manejar el envío del formulario de comentario
+   
     $("#comentarioForm").submit(function(event) {
-        event.preventDefault(); // Evitar la recarga de la página al enviar el formulario
+        event.preventDefault(); 
         enviarComentario();
     });
 
-    // Manejar el clic en el enlace para ver comentarios
+    
     $("#verComentarios").click(function() {
         cargarComentarios();
     });
 });
 
-// Función para enviar un comentario mediante AJAX
+
 function enviarComentario() {
     var nombre = $("#nombre").val();
     var comentario = $("#comentario").val();
@@ -21,7 +21,7 @@ function enviarComentario() {
         url: "procesar_comentario.php",
         data: { nombre: nombre, comentario: comentario },
         success: function(response) {
-            alert(response); // Puedes personalizar cómo manejar la respuesta del servidor
+            alert(response); 
             $("#nombre").val("");
             $("#comentario").val("");
         },
@@ -31,20 +31,19 @@ function enviarComentario() {
     });
 }
 
-// Función para cargar y mostrar comentarios mediante AJAX
-// Función para cargar y mostrar comentarios mediante AJAX
+
 function cargarComentarios() {
     $.ajax({
         type: "GET",
         url: "ver_comentarios.php",
         success: function(response) {
-            // Limpiar el contenedor antes de agregar nuevos comentarios
+           
             $("#comentariosContainer").empty();
 
-            // Convertir la respuesta (HTML) en elementos jQuery
+           
             var comentarios = $(response);
 
-            // Agregar cada comentario como una tarjeta
+           
             comentarios.each(function() {
                 var nombre = $(this).find('.nombre').text();
                 var fecha = $(this).find('.fecha').text();
